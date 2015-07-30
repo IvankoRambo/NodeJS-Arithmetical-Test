@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Admin Panel</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="../css/style.css" />
+		<script type="application/javascript" src="../front-js/jquery-2.1.3.min.js"></script>
+	</head>
+	
+	<body>
+		<h3 class="admin-title">The page for adding new equestions</h3>
+		
+	<form id="add_equestion_form" method="post">
+		<span>Type an equestion</span><br />
+		<input type="text" required id="admin_equestion" name="admin_equestion" /><br />
+		<br />
+		<button name="admin_add_equestion" class="btn btn-primary">Add</button>
+	</form>
+	
+	<div id="admin_message"></div>
+	
+	<script type="application/javascript" src="../front-js/admin-requests.js"></script>	
+	</body>
+	
+</html>
