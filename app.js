@@ -44,6 +44,13 @@ connection.connect(function(err){
 });
 
 
+app.engine('html', require('ejs').renderFile);
+
+app.use(session({secret: 'testtakers', name: 'testaker', proxy: true, resave: true, saveUninitialized: true}));
+app.use('/front-js', serveStatic(path.join(__dirname, 'front-js')));
+app.use('/css', serveStatic(path.join(__dirname, 'css')));
+
+
 var sess;
 
 app.get('/', function(req, res){
@@ -65,6 +72,7 @@ app.post('/login', bodyParser.json(), function(req, res){
 	if (!(req.body.login || req.body.name || req.body.surname)) {
 		return res.status(400).json({result: false, message: "Bad request. Fill all fields, when login"});
 	}
+	
 	
 	sess.login = req.body.login;
 	
@@ -118,7 +126,7 @@ app.get('/test/getname', function(req, res){
 			});
 			
 		}
-		
+
 	});
 		
 });
@@ -138,6 +146,7 @@ app.get('/:page*', function(req, res){
 	}
 	
 	if(req.params.page == 'test'){
+
 		if(!sess.login){
 			res.redirect('/');
 		}
@@ -155,6 +164,7 @@ app.post('/add/equestion', bodyParser.json(), function(req, res){
 		return res.status(400).json({result: false, message: "Bad request. You have to fill the field"});
 	}
 	
+
 	if(!req.body.admin_equestion.match(/^\d+\D{1}\d+$/)){
 		message = 'The format of equestion has to be like (digits[arithmetical sign]digits)';
 		return res.json({result: false, message: message});
@@ -217,6 +227,7 @@ app.post('/add/equestion', bodyParser.json(), function(req, res){
 
 app.post('/get/equestion', bodyParser.json(), function(req, res){
 	
+
 	(req.body.checked.length) ? eq.getFilteredEquestions(connection, req.body.checked, function(err, types){
 		
 		if(err){

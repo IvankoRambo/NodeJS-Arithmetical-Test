@@ -27,6 +27,7 @@
 			
 			$("h3 span").text(response.name);
 			
+			
 			for(var i = response.types.length-1; i>=0; i--){
 				
 				$('#checkbox_form').prepend('<input type="checkbox" value="'+response.types[i].type+'" name="arith[]" /><span>'+response.types[i].type+'</span><br/>');
@@ -166,7 +167,9 @@
 							$('#get_equestions').text('Pass again');
 							
 							var data = {};
+
 							data.total = self.total_count;
+
 							data.right = self.right_count;
 							data.wrong = self.wrong_count;
 							data.types = self.types.join();

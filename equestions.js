@@ -1,3 +1,4 @@
+
 function Equestions(){};
 
 
@@ -25,6 +26,7 @@ Equestions.setEquestionInfo = function(connection, equestion, callback){
 	equestion_result,
 	equestion_separator,
 	equestion_array;
+	
 	
 	equestion_separator = equestion.match(/\D/)[0];
 	equestion_array = equestion.split(/\D/);
